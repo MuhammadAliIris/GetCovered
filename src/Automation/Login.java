@@ -3,22 +3,28 @@ package Automation;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Login {
 
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) throws InterruptedException {
 		
 		
 		System.setProperty("webdriver.chrome.driver", "C:/Softwares/Selenium material/chromedriver_win32/chromedriver.exe");
 		
 		WebDriver driver = new ChromeDriver();
+		
 
 		String BaseURL ="https://client-dev-v2.getcoveredinsurance.com/";
-		
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		    
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
 		driver.get(BaseURL); 
         
@@ -26,7 +32,20 @@ public class Login {
         
         Thread.sleep(1000);
         //Click Register
-        driver.findElement(By.xpath("//*[@id=\"top-of-app\"]/div/div[3]/a[2]")).click();
+        WebElement Register = driver.findElement(By.xpath("//*[@id=\"top-of-app\"]/div/div[3]/a[2]"));
+        Register.click();
+        
+     // explicit wait condition
+     //WebDriverWait w = new WebDriverWait(driver, 10);
+     
+     // presenceOfElementLocated condition
+     //w.until(ExpectedConditions.presenceOfElementLocated (By.xpath("//*[@id=\"top-of-app\"]/div/div[3]/a[2]")));
+     
+     // get text of element and print
+     //System.out.println("Element present having text:" + Register.getText());
+        
+        
+        
         
         Thread.sleep(1000);
         //Click Email Input field
@@ -56,23 +75,15 @@ public class Login {
 	    //Phone Number
 	    driver.findElement(By.xpath("//*[@id=\"mat-input-11\"]")).sendKeys("3125675868");
 	    
-	    //Login and Save
-	    driver.findElement(By.xpath(""));
-	    
 	    //T&C checkbox
-	    driver.findElement(By.xpath(""));
+	    WebElement chkbox = driver.findElement(By.xpath("//*[@id=\"terms_conditions\"]"));
+	    chkbox.click();
+	    
+	  //Login and Save
+	    driver.findElement(By.xpath("/html/body/app-root/article/div/app-register/div/form/button")).click();
 	    
 	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-        //WebDriver driver1 = new FirefoxDriver();
+	  	    
 	
 	
 	
